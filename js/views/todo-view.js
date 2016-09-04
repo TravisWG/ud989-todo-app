@@ -18,10 +18,9 @@ var app = app || {};
 		// The DOM events specific to an item.
 		events: {
 			'click .toggle': 'toggleCompleted',
+			'click .priority-btn': 'priority',
 			'dblclick label': 'edit',
 			'click .edit-btn': 'edit',
-			'click .priority-btn': 'priority',
-			'click .priority': 'unprioritize',
 			'click .destroy': 'clear',
 			'keypress .edit': 'updateOnEnter',
 			'keydown .edit': 'revertOnEscape',
@@ -73,21 +72,23 @@ var app = app || {};
 			this.model.toggle();
 		},
 
+			// Switch this view into and out of `"priority"` mode, displaying the text for the item in red.
+			//This simply makes a change in the html
+			//Changes could be made so the priority state is stored in the model.
+		priority: function () {
+			if (!this.$el.hasClass('priority')) {
+				this.$el.addClass('priority');
+			}
+			else {
+			this.$el.removeClass('priority');
+			}
+		},
+
 		// Switch this view into `"editing"` mode, displaying the input field.
 		edit: function () {
 			this.$el.addClass('editing');
 			this.$input.focus();
 		},
-
-		// Switches this view into "priority" mode, changing text to red.
-		priority: function () {
-			this.$el.addClass('priority');
-			},
-
-		unprioritize: function() {
-			this.$el.removeClass('priority');
-		},
-
 
 		// Close the `"editing"` mode, saving changes to the todo.
 		close: function () {
