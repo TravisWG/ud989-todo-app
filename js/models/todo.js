@@ -29,19 +29,19 @@ var app = app || {};
 			if (this.get('priority')) {
 				if (this.get('highPriority')) {
 					this.save({
-						priority: false,
-						highPriority: false
+						priority: !this.get('priority'),
+						highPriority: !this.get('highPriority')
 					});
 				}
 				else {
 					this.save({
-						highPriority: true
+						highPriority: !this.get('highPriority')
 					});
 				}
 			}
 			else {
 				this.save({
-					priority: true
+					priority: !this.get('priority')
 				});
 			}
 
