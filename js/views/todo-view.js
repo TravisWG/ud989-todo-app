@@ -53,6 +53,7 @@ var app = app || {};
 			this.$el.html(this.template(this.model.toJSON()));
 			this.$el.toggleClass('completed', this.model.get('completed'));
 			this.$el.toggleClass('priority', this.model.get('priority'))
+			this.$el.toggleClass('highPriority', this.model.get('highPriority'))
 			this.toggleVisible();
 			this.$input = this.$('.edit');
 			return this;
@@ -78,17 +79,6 @@ var app = app || {};
 			this.model.togglePriority();
 		},
 
-			// Switch this view into and out of `"priority"` mode, displaying the text for the item in red.
-			//This simply makes a change in the html
-			//Changes could be made so the priority state is stored in the model.
-		priority: function () {
-			if (!this.$el.hasClass('priority')) {
-				this.$el.addClass('priority');
-			}
-			else {
-			this.$el.removeClass('priority');
-			}
-		},
 
 		// Switch this view into `"editing"` mode, displaying the input field.
 		edit: function () {

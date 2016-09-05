@@ -14,7 +14,8 @@ var app = app || {};
 		defaults: {
 			title: '',
 			completed: false,
-			priority: false
+			priority: false,
+			highPriority: false
 		},
 
 		// Toggle the `completed` state of this todo item.
@@ -23,11 +24,27 @@ var app = app || {};
 				completed: !this.get('completed')
 			});
 		},
-		// Toggle the `completed` state of this todo item.
+		// Toggle the `priority` state of this todo item.
 		togglePriority: function () {
-			this.save({
-				priority: !this.get('priority')
-			});
-		}
+			if (this.get('priority')) {
+				if (this.get('highPriority')) {
+					this.save({
+						priority: false,
+						highPriority: false
+					});
+				}
+				else {
+					this.save({
+						highPriority: true
+					});
+				}
+			}
+			else {
+				this.save({
+					priority: true
+				});
+			}
+
+		},
 	});
 })();

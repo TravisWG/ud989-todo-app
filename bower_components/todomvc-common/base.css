@@ -286,8 +286,16 @@ label[for='toggle-all'] {
 	color: #d66;
 }
 
+#todo-list li.highPriority:not(.completed) label {
+	color: orange;
+	font-weight: bold
+}
 #todo-list li.priority .priority-btn:after {
 	color: #d66;
+}
+#todo-list li.highPriority .priority-btn:after {
+	color: orange;
+	font-weight: bold
 }
 
 #todo-list li .destroy,
